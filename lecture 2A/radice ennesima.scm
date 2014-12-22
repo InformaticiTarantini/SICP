@@ -1,14 +1,14 @@
 #lang planet neil/sicp
 
 (define (pot x n)
-(pot-iter x n 1))
+  (pot-iter x n 1))
 
 (define (pot-iter x counter product)
-(if (= counter 0)
-product
-(pot-iter x
-(- counter 1)
-(* x product))))
+  (if (= counter 0)
+      product
+      (pot-iter x
+                (- counter 1)
+                (* x product))))
 
 (define tolerance 0.00001)
 
@@ -26,8 +26,8 @@ product
     (/ (+ x y) 2))
   
   (define (average-damp f)
-    (lambda (x) (average x (f x n))))
-
+    (lambda (z) (average z (f z))))
+  
   (fixed-point (average-damp
-                (lambda (y) (/ x (pot y n))))
-               1.0))
+                (lambda (y) (/ x (pot y (- n 1)))))
+               2.0))
